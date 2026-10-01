@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f4">
+  <meta name="description" content="Technical knowledge search and support, grounded in your team's solutions.">
+  <title>Nexus Support | Technical knowledge, made useful</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#overview" aria-label="Nexus Support home">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 22.5 15.8 7l3.4 6-5.5 9.5H7Z"/><path d="M18.3 13h7l-8.8 15.5-3.4-6 5.2-9.5Z"/><circle cx="24.8" cy="8" r="2.2"/></svg></span>
+        <span class="brand-copy"><strong>nexus</strong><small>SUPPORT SYSTEMS</small></span>
+      </a>
+      <div class="workspace-label">WORKSPACE <span class="live-dot"></span></div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span><span>Overview</span><kbd>1</kbd></button>
+        <button class="nav-item" data-view="knowledge"><span class="nav-icon">▤</span><span>Knowledge base</span><kbd>2</kbd></button>
+        <button class="nav-item" data-view="tickets"><span class="nav-icon">◷</span><span>Support tickets</span><span class="nav-count" id="ticketNavCount">0</span></button>
+        <button class="nav-item" data-view="bookmarks"><span class="nav-icon">☆</span><span>Saved solutions</span></button>
+        <button class="nav-item staff-only hidden" data-view="admin" id="adminNav"><span class="nav-icon">▦</span><span>Admin console</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="note-orbit">✳</span><div><strong>Support, in context.</strong><p>Answers connected to the knowledge your team trusts.</p></div></div>
+        <button class="profile-button" id="profileButton">
+          <span class="avatar" id="userAvatar">?</span><span class="profile-copy"><strong id="profileName">Guest session</strong><small id="profileRole">Sign in to sync work</small></span><span class="profile-more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="mobileMenu" aria-label="Open navigation"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <div class="breadcrumbs"><span>Workspace</span><span class="crumb-slash">/</span><strong id="crumbCurrent">Overview</strong></div>
+        <div class="topbar-actions">
+          <span class="system-status"><i></i> All systems operational</span>
+          <button class="icon-button theme-toggle" id="themeToggle" aria-label="Toggle light or dark mode" title="Toggle appearance"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button>
+          <button class="account-button" id="authButton">Sign in <span>↗</span></button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="view-panel" id="overviewView">
+          <div class="welcome-row">
+            <div><div class="eyebrow"><span class="eyebrow-line"></span> TECHNICAL SUPPORT / 01</div><h1>Good to have you here<span class="heading-period">.</span></h1><p class="welcome-subtitle">Find a clear answer. Get back to what you were building.</p></div>
+            <div class="date-stamp"><span class="date-icon">◷</span><span id="todayDate">TODAY</span></div>
+          </div>
+          <section class="search-workbench" aria-labelledby="searchHeading">
+            <div class="search-workbench-top"><div><span class="section-index">01 / ASK</span><h2 id="searchHeading">What can we help you solve?</h2></div><span class="grounded-label"><span>✳</span> Knowledge-grounded answers</span></div>
+            <form id="searchForm" class="search-form" autocomplete="off">
+              <div class="search-input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="searchInput" name="query" type="search" placeholder="Describe the issue or paste an error message..." minlength="3" maxlength="500" aria-label="Ask a technical question"><button class="clear-search hidden" id="clearSearch" type="button" aria-label="Clear search">×</button><div class="suggestion-popover hidden" id="suggestions"></div></div>
+              <button class="search-submit" type="submit"><span>Find a solution</span><span class="submit-arrow">↗</span></button>
+            </form>
+            <div class="search-bottom"><div class="quick-prompts"><span>TRY</span><button type="button" class="prompt-chip" data-query="ModuleNotFoundError: No module named pandas">Python import error <span>↗</span></button><button type="button" class="prompt-chip" data-query="Connected to Wi-Fi but internet is not working">Wi-Fi, no internet <span>↗</span></button><button type="button" class="prompt-chip" data-query="How do I troubleshoot HTTP 500 server errors?">HTTP 500 error <span>↗</span></button></div><button class="filter-toggle" id="filterToggle" type="button"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10m-7 5h4"/><circle cx="8" cy="7" r="1.5"/><circle cx="15" cy="12" r="1.5"/></svg> Filters <span class="filter-chevron">⌄</span></button></div>
+            <div class="filter-row hidden" id="filterRow">
+              <label>Category<select id="categoryFilter"><option value="">All categories</option></select></label>
+              <label>Technology<input id="technologyFilter" placeholder="e.g. Python"></label>
+              <label>Product<input id="productFilter" placeholder="e.g. Windows"></label>
+              <label>Error code<input id="errorFilter" placeholder="e.g. HTTP 500"></label>
+              <label>Tag<input id="tagFilter" placeholder="e.g. DNS"></label>
+              <label>Difficulty<select id="difficultyFilter"><option value="">Any level</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
+              <label>Updated after<input id="dateFilter" type="date"></label>
+            </div>
+          </section>
+
+          <section class="answer-panel hidden" id="answerPanel" aria-live="polite">
+            <div class="answer-heading"><div><span class="section-index">SEARCH RESULT <span id="answerConfidence"></span></span><h2 id="answerTitle">Your answer</h2></div><button class="icon-button" id="closeAnswer" aria-label="Close answer">×</button></div>
+            <div class="answer-body"><div class="answer-spark">✳</div><div class="answer-copy"><div class="answer-text" id="answerText"></div><div class="detected-errors hidden" id="detectedErrors"></div></div></div>
+            <div class="sources-block"><div class="source-header"><strong>Sources from your knowledge base</strong><span id="sourceCount"></span></div><div class="source-list" id="sourceList"></div></div>
+            <div class="answer-footer"><span class="answer-disclaimer" id="answerDisclaimer">Answers are based on the sources shown above.</span><div class="answer-actions"><span>Was this useful?</span><button class="feedback-button" id="helpfulButton" aria-label="Mark answer helpful" title="Helpful">👍</button><button class="feedback-button" id="notHelpfulButton" aria-label="Mark answer not helpful" title="Not helpful">👎</button><button class="outline-button" id="createFromAnswer">Still stuck? Open a ticket <span>↗</span></button></div></div>
+          </section>
+
+          <div class="overview-grid" id="overviewGrid">
+            <section class="content-section recent-section"><div class="section-heading"><div><span class="section-index">02 / RECENT</span><h2>Pick up where you left off</h2></div><button class="text-link" id="viewHistory">Search history <span>↗</span></button></div><div class="recent-list" id="recentSearches"><div class="empty-line">Your recent searches will appear here.</div></div></section>
+            <section class="content-section popular-section"><div class="section-heading"><div><span class="section-index">03 / TRENDING</span><h2>Popular problems</h2></div><span class="trend-mark">↗</span></div><div class="popular-list" id="popularProblems"><div class="empty-line">Community searches, updated as people ask.</div></div></section>
+          </div>
+          <div class="overview-grid second-grid" id="overviewSecondGrid">
+            <section class="content-section categories-section"><div class="section-heading"><div><span class="section-index">04 / EXPLORE</span><h2>Browse by discipline</h2></div><button class="text-link" data-go-view="knowledge">All knowledge <span>↗</span></button></div><div class="category-grid" id="categoryGrid"></div></section>
+            <section class="content-section tickets-preview"><div class="section-heading"><div><span class="section-index">05 / YOUR QUEUE</span><h2>Support tickets</h2></div><button class="text-link" data-go-view="tickets">View all <span>↗</span></button></div><div class="ticket-preview-list" id="ticketPreview"><div class="empty-line">Sign in to see your support queue.</div></div></section>
+          </div>
+        </section>
+
+        <section class="view-panel hidden" id="knowledgeView"><div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> LIBRARY / 02</div><h1>Knowledge base<span class="heading-period">.</span></h1><p class="welcome-subtitle">Practical fixes, written down and ready to use.</p></div><div class="staff-controls hidden" id="knowledgeStaffControls"><button class="outline-button" id="uploadButton">↑ Upload document</button><button class="primary-button" id="newArticleButton">＋ New article</button></div></div><div class="library-toolbar"><div class="library-search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="librarySearch" placeholder="Search articles, errors, tags..."></div><select id="libraryCategory"><option value="">Every discipline</option></select><span class="result-count" id="libraryCount"></span></div><div class="library-layout"><aside class="library-rail"><span class="rail-title">DISCIPLINES</span><button class="rail-filter active" data-library-category="">All knowledge <span id="allArticleCount"></span></button><div id="libraryCategoryList"></div><div class="rail-divider"></div><span class="rail-title">LEVEL</span><button class="rail-level" data-difficulty="Beginner">Beginner</button><button class="rail-level" data-difficulty="Intermediate">Intermediate</button><button class="rail-level" data-difficulty="Advanced">Advanced</button></aside><div class="article-list" id="articleList"></div></div></section>
+
+        <section class="view-panel hidden" id="ticketsView"><div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> SERVICE DESK / 03</div><h1>Support tickets<span class="heading-period">.</span></h1><p class="welcome-subtitle">Keep a human in the loop when the fix needs a closer look.</p></div><button class="primary-button" id="newTicketButton">＋ Open a ticket</button></div><div class="ticket-filters"><button class="ticket-filter active" data-ticket-filter="all">All tickets</button><button class="ticket-filter" data-ticket-filter="Open">Open</button><button class="ticket-filter" data-ticket-filter="In Progress">In progress</button><button class="ticket-filter" data-ticket-filter="Resolved">Resolved</button></div><div class="ticket-list-full" id="ticketList"><div class="empty-state"><span>◷</span><strong>Your support queue is quiet.</strong><p>Sign in to view existing tickets, or open one when you need a person to take a look.</p></div></div></section>
+
+        <section class="view-panel hidden" id="bookmarksView"><div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR LIBRARY / 04</div><h1>Saved solutions<span class="heading-period">.</span></h1><p class="welcome-subtitle">The fixes you want to keep close.</p></div></div><div class="article-list bookmark-list" id="bookmarkList"><div class="empty-state"><span>☆</span><strong>Your saved solutions live here.</strong><p>Save an article from search results to find it again.</p></div></div></section>
+
+        <section class="view-panel hidden" id="adminView"><div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> SYSTEM CONTROL / 05</div><h1>Admin console<span class="heading-period">.</span></h1><p class="welcome-subtitle">A clear view of knowledge health and support load.</p></div></div><div class="admin-metrics" id="adminMetrics"></div><div class="admin-grid"><section class="content-section" id="peopleSection"><div class="section-heading"><div><span class="section-index">01 / USERS</span><h2>People & access</h2></div></div><div class="user-table-wrap"><table class="user-table"><thead><tr><th>NAME</th><th>ROLE</th><th>JOINED</th><th></th></tr></thead><tbody id="userTableBody"></tbody></table></div></section><section class="content-section"><div class="section-heading"><div><span class="section-index">02 / SIGNALS</span><h2>Frequently searched</h2></div></div><div id="adminFrequent" class="popular-list"></div></section><section class="content-section"><div class="section-heading"><div><span class="section-index">03 / NEEDS ATTENTION</span><h2>Unresolved problems</h2></div></div><div id="adminUnresolved" class="ticket-preview-list"></div></section></div></section>
+        <footer class="page-footer"><span>NEXUS SUPPORT SYSTEMS</span><span>Knowledge shared is time returned <span class="footer-star">✳</span></span><span id="footerApiStatus">LOCAL KNOWLEDGE MODE</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="sidebar-scrim hidden" id="sidebarScrim"></div>
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+
+  <dialog class="modal" id="authDialog"><form method="dialog" class="modal-close-wrap"><button class="modal-close" aria-label="Close">×</button></form><div class="modal-kicker">YOUR SUPPORT WORKSPACE</div><h2 id="authTitle">Welcome back<span>.</span></h2><p class="modal-subtitle" id="authSubtitle">Sign in to sync your searches and tickets.</p><div class="auth-tabs"><button type="button" class="auth-tab active" data-auth-mode="login">Sign in</button><button type="button" class="auth-tab" data-auth-mode="register">Create account</button></div><form id="authForm"><label id="nameField" class="hidden">Full name<input name="name" autocomplete="name" minlength="2" maxlength="120"></label><label>Work email<input name="email" type="email" autocomplete="email" required></label><label>Password<input name="password" type="password" autocomplete="current-password" minlength="10" required></label><div class="form-error hidden" id="authError"></div><button class="primary-button modal-submit" id="authSubmit" type="submit">Sign in <span>↗</span></button></form><p class="security-note"><span>▣</span> Passwords are securely hashed. Your session stays private.</p></dialog>
+
+  <dialog class="modal wide-modal" id="ticketDialog"><form method="dialog" class="modal-close-wrap"><button class="modal-close" aria-label="Close">×</button></form><div class="modal-kicker">SERVICE DESK / NEW REQUEST</div><h2>Open a support ticket<span>.</span></h2><p class="modal-subtitle">A support teammate can take it from here.</p><form id="ticketForm"><label>Subject<input name="subject" required minlength="4" maxlength="240" placeholder="A concise summary of the problem"></label><label>What is happening?<textarea name="description" required minlength="10" rows="5" placeholder="Include what you expected, what happened, and any error message..."></textarea></label><label>Priority<select name="priority"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></label><div class="form-error hidden" id="ticketError"></div><button class="primary-button modal-submit" type="submit">Submit ticket <span>↗</span></button></form></dialog>
+
+  <dialog class="modal wide-modal" id="articleDialog"><form method="dialog" class="modal-close-wrap"><button class="modal-close" aria-label="Close">×</button></form><div class="modal-kicker">KNOWLEDGE EDITOR</div><h2>Share a solution<span>.</span></h2><form id="articleForm"><label>Article title<input name="title" required minlength="4" maxlength="240"></label><label>Short summary<input name="summary" maxlength="500"></label><div class="form-two"><label>Category<select name="category" id="articleCategory" required></select></label><label>Technology<input name="technology" placeholder="Python, PostgreSQL..."></label></div><div class="form-two"><label>Product<input name="product"></label><label>Error code<input name="error_code"></label></div><label>Tags <span class="field-note">comma separated</span><input name="tags"></label><label>Solution steps<textarea name="content" required minlength="10" rows="7" placeholder="Explain why it happens, then give clear steps..."></textarea></label><div class="form-error hidden" id="articleError"></div><button class="primary-button modal-submit" type="submit">Publish article <span>↗</span></button></form></dialog>
+  <input type="file" id="documentInput" class="hidden" accept=".txt,.md,.pdf,.docx">
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
